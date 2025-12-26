@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<int_value>100</int_value>
+<float_value>3.1415000199999999e+00</float_value>
+<string_value>OpenCV XML Test</string_value>
+<bool_value>1</bool_value>
+<int_vector>
+  <_type_id>opencv-matrix</_type_id>
+  <rows>1</rows>
+  <cols>5</cols>
+  <dt>i</dt>
+  <data>1 2 3 4 5</data>
+</int_vector>
+</opencv_storage>

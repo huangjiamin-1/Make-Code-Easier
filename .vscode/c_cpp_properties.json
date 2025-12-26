@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "make coder happier",
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "compileCommands": [
+                "${workspaceFolder}/build/compile_commands.json"
+            ],
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
