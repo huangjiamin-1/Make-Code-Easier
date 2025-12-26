@@ -1,0 +1,30 @@
+%YAML:1.0
+---
+imu_topic: /imu0
+image0_topic: /cam0/image_raw
+image1_topic: /cam1/image_raw
+output_path: "./output/"
+cam0_calib: "cam0_pinhole.yaml"
+cam1_calib: "cam1_pinhole.yaml"
+pose_graph_save_path: "~/output/pose_graph/"
+data:
+   rows: 4
+   cols: 4
+   dt: d
+   p:
+      hello: 12
+      hallo: 13
+      data: !!opencv-matrix
+         rows: 3
+         cols: 3
+         dt: d
+         data: [ 1., 0., 0., 0., 1., 0., 0., 0., 1. ]
+      t:
+         hello: 12
+         hallo: 13
+         h:
+            data: !!opencv-matrix
+               rows: 3
+               cols: 3
+               dt: d
+               data: [ 1., 0., 0., 0., 1., 0., 0., 0., 1. ]

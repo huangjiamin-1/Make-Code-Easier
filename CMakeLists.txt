@@ -23,6 +23,9 @@ message(STATUS "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # find 3rd libraries
+if(WIN32)
+    set(OpenCV_DIR "D:/Jimn_Proj/opencv/lib/")
+endif()
 find_package(OpenCV)
 
 # -------------------------- 🚀 编译核心模块 + 测试 --------------------------
