@@ -1,30 +1,69 @@
 %YAML:1.0
 ---
+imu: 1
+num_of_cam: 2
+velocity_factor: -3
+integral_factor: 1.
+pos_factor: 1.
+qua_level: 20
 imu_topic: /imu0
 image0_topic: /cam0/image_raw
 image1_topic: /cam1/image_raw
 output_path: "./output/"
 cam0_calib: "cam0_pinhole.yaml"
 cam1_calib: "cam1_pinhole.yaml"
-pose_graph_save_path: "~/output/pose_graph/"
-data:
+image_width: 1280
+image_height: 720
+depth_depth: 2.9999999329447746e-02
+iter_nums: 1
+num_var: 9
+estimate_extrinsic: 0
+body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   p:
-      hello: 12
-      hallo: 13
-      data: !!opencv-matrix
-         rows: 3
-         cols: 3
-         dt: d
-         data: [ 1., 0., 0., 0., 1., 0., 0., 0., 1. ]
-      t:
-         hello: 12
-         hallo: 13
-         h:
-            data: !!opencv-matrix
-               rows: 3
-               cols: 3
-               dt: d
-               data: [ 1., 0., 0., 0., 1., 0., 0., 0., 1. ]
+   data: [ 1.6859735185303704e-02, -9.9963743456748699e-01,
+       -2.0994016786087179e-02, 0., 9.9101787516505691e-01,
+       1.3921080873965375e-02, 1.3300291203818138e-01, 0.,
+       -1.3266243037430428e-01, -2.3047839782365631e-02,
+       9.9089327207754785e-01, 0., 0., 0., 0., 1. ]
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 9.9994256865814513e-01, -5.2915101563382281e-03,
+       -9.3198339908006494e-03, -1.0034650988761087e-01,
+       5.2111964019252704e-03, 9.9994926121157068e-01,
+       -8.6208140273788588e-03, 3.0929553980842399e-04,
+       9.3649782386973496e-03, 8.5717514371020081e-03,
+       9.9991940788239997e-01, 2.7452760642807987e-05, 0., 0., 0., 1. ]
+RLCTB: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ -3.9112822056113231e-02, -9.9914509237132199e-01,
+       -1.3389232282315269e-02, 9.9918565774656842e-01,
+       -3.8974496332558929e-02, -1.0440784892968383e-02,
+       9.9100204018311173e-03, -1.3786697426371597e-02,
+       9.9985584884507706e-01 ]
+multiple_thread: 1
+loop_thread: 0
+max_cnt: 150
+min_dist: 30
+freq: 10
+F_threshold: 1.
+show_track: 0
+flow_back: 1
+max_solver_time: 5.0000000745058060e-02
+max_num_iterations: 16
+keyframe_parallax: 30.
+g_norm: 9.8066501617431641e+00
+acc_n: 4.0000000596046448e-01
+acc_w: 3.9999999105930328e-02
+gyr_n: 9.9999997764825821e-03
+gyr_w: 9.9999997473787516e-05
+estimate_td: 1
+td: 5.0000000745058060e-02
+load_previous_pose_graph: 0
+pose_graph_save_path: "~/output/pose_graph/"
+save_image: 0

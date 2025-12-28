@@ -26,3 +26,4 @@ using JString = std::string;
 /*添加换行的打印，原理:[C标准规定]相邻的字符串字面量会被编译器自动拼接成一个完整的字符串*/
 #define PRINT_INFO(fmt, ...) printf("[INFO] " fmt "\n", ##__VA_ARGS__)
 #define PRINT_ERROR(fmt, ...) printf("[ERROR] " fmt "\n", ##__VA_ARGS__)
+#define PRINT_WARN(fmt, ...) printf("[WARN] " fmt "\n", ##__VA_ARGS__)

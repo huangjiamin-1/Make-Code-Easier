@@ -14,7 +14,7 @@ int main(IN int argc, IN char *argv[])
 {
     using namespace std;
     // JString file_path = "/media/mj/44367E9F88E0AE11/Jimn/Make-Code-Easier/config/cam0_pinhole.yaml";
-    JString file_path = "D:/Jimn_Jhn/Files_in_Dahua/Make-Code-Easier/config/out.yaml";
+    JString file_path = "D:/Jimn_Jhn/Files_in_Dahua/Make-Code-Easier/config/vioParam.yaml";
     // 1. 读取包含该矩阵的 YAML 文件
     cv::FileStorage fs(file_path, cv::FileStorage::READ);
     if (!fs.isOpened()) {
@@ -62,6 +62,27 @@ int main(IN int argc, IN char *argv[])
     fs.release();
     out_path = "D:/Jimn_Jhn/Files_in_Dahua/Make-Code-Easier/config/out1.yaml";
 
-    Jimn_Jhn::copy_yaml(file_path, out_path);
+    // Jimn_Jhn::Process_Yaml::copy_yaml(file_path, out_path);
+    Jimn_Jhn::Process_Yaml::FileNode2Map data = Jimn_Jhn::Process_Yaml::parse_Yaml_to_FileNode2Map(file_path);
+    std::vector<JString> keys;
+    keys.push_back("data");
+    keys.push_back("p");
+    // keys.push_back("data1");
+    try
+    {
+        auto& out = Jimn_Jhn::Process_Yaml::find_and_rewrite_kv(data, keys);
+        Jimn_Jhn::Process_Yaml::FileNode2Map d;
+        d._type = Jimn_Jhn::Process_Yaml::FileNodeTYPE::MAT;
+        d._node_name = "data1";
+        d._mat = (cv::Mat)cv::Matx44d::eye();
+        out._map.push_back(d);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+    Jimn_Jhn::Process_Yaml::write_FileNode2Map_to_YamlFile(data, out_path);
+
     return 0;
 }
