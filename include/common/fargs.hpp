@@ -2,7 +2,7 @@
  * @Author: Jimn
  * @Date: 2025-12-30 13:58:27
  * @LastEditors: huangjiamin-1 2716673911@qq.com
- * @LastEditTime: 2025-12-30 14:44:34
+ * @LastEditTime: 2025-12-30 15:34:53
  * @FilePath: /Make-Code-Easier/include/common/fargs.hpp
  * @Description: 命令行参数宏实现,这是一个学习命令行拼接令牌·##·模块，非必要不要使用
  */
@@ -18,9 +18,9 @@ namespace Jimn_Jhn{
         */
         struct JFLagItem
         {
-            JString _flag_name; 
-            JString* _flag_value;
-            JString _help_text;   
+            JString flag_name_; 
+            JString* flag_value_;
+            JString help_text_;   
         };
 
         /*
@@ -35,9 +35,9 @@ namespace Jimn_Jhn{
             /* 静态注册器：程序启动时自动将参数信息加入全局注册表 */ \
             static bool g_register_flag_##name = [](){ \
                 JFLagItem item; \
-                item._flag_name = #name; /* #: 把参数名转为字符串(e.g. Jimn->"Jimn") */ \
-                item._flag_value = &FLAGS_##name; /* 绑定全局变量指针 */ \
-                item._help_text = (txt);    /* 赋值帮助说明 */ \
+                item.flag_name_ = #name; /* #: 把参数名转为字符串(e.g. Jimn->"Jimn") */ \
+                item.flag_value_ = &FLAGS_##name; /* 绑定全局变量指针 */ \
+                item.help_text_ = (txt);    /* 赋值帮助说明 */ \
                 g_flags_registry.push_back(item); \
                 return true; \ 
             }(); \

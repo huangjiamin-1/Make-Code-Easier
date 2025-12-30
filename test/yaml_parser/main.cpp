@@ -2,7 +2,7 @@
  * @Author: Jimn
  * @Date: 2025-12-23 18:40:54
  * @LastEditors: huangjiamin-1 2716673911@qq.com
- * @LastEditTime: 2025-12-25 21:13:09
+ * @LastEditTime: 2025-12-30 15:34:24
  * @FilePath: /C++解析Yaml文件/main.cpp
  * @Description: 使用C++解析Yaml文件
  */
@@ -72,10 +72,10 @@ int main(IN int argc, IN char *argv[])
     {
         auto& out = Jimn_Jhn::Process_Yaml::find_and_rewrite_kv(data, keys);
         Jimn_Jhn::Process_Yaml::FileNode2Map d;
-        d._type = Jimn_Jhn::Process_Yaml::FileNodeTYPE::MAT;
-        d._node_name = "data1";
-        d._mat = (cv::Mat)cv::Matx44d::eye();
-        out._map.push_back(d);
+        d.type_ = Jimn_Jhn::Process_Yaml::FileNodeTYPE::MAT;
+        d.node_name_ = "data1";
+        d.mat_ = (cv::Mat)cv::Matx44d::eye();
+        out.map_.push_back(d);
     }
     catch(const std::exception& e)
     {

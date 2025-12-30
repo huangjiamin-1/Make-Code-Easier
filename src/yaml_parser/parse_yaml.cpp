@@ -2,7 +2,7 @@
  * @Author: Jimn
  * @Date: 2025-12-23 20:15:41
  * @LastEditors: huangjiamin-1 2716673911@qq.com
- * @LastEditTime: 2025-12-26 10:01:18
+ * @LastEditTime: 2025-12-30 15:33:41
  * @FilePath: /Make-Code-Easier/files/C++解析Yaml文件/src/parse_yaml.cpp
  * @Description: 解析yaml文件 源代码
  */
@@ -130,12 +130,12 @@ namespace Jimn_Jhn{
         OUT void parse_FileNode_to_FileNode2Map(IN const cv::FileNode & node, IN const JString & node_name, OUT FileNode2Map & out_map)
         {
             // 初始化节点名称
-            out_map._node_name = node_name;
+            out_map.node_name_ = node_name;
 
             // 处理Map类型: 使用递归的写法
             if (!is_opencv_mat(node) && node.isMap())
             {
-                out_map._type = FileNodeTYPE::MAP;
+                out_map.type_ = FileNodeTYPE::MAP;
                 for (const auto& it: node)
                 {
                     JString key = it.name(); // 获取当前节点名称
@@ -143,23 +143,23 @@ namespace Jimn_Jhn{
                     // 递归
                     parse_FileNode_to_FileNode2Map(it, key, child_node);
                     // 将子节点存入当前节点的_map中
-                    out_map._map.push_back(child_node);
+                    out_map.map_.push_back(child_node);
                 }
             }else if (node.isInt())
             {
-                out_map._type = FileNodeTYPE::INT;
-                node >> out_map._idata;
+                out_map.type_ = FileNodeTYPE::INT;
+                node >> out_map.idata_;
             }else if (node.isReal())
             {
-                out_map._type = FileNodeTYPE::FLOAT;
-                node >> out_map._fdata;
+                out_map.type_ = FileNodeTYPE::FLOAT;
+                node >> out_map.fdata_;
             }else if (node.isString())
             {
-                out_map._type = FileNodeTYPE::STR;
-                node >> out_map._sdata;
+                out_map.type_ = FileNodeTYPE::STR;
+                node >> out_map.sdata_;
             }else {
-                out_map._type = FileNodeTYPE::MAT;
-                node >> out_map._mat;
+                out_map.type_ = FileNodeTYPE::MAT;
+                node >> out_map.mat_;
             }    
             return;
         }
@@ -184,19 +184,19 @@ namespace Jimn_Jhn{
         OUT void write_FileNode2Map_to_Yaml(IN const FileNode2Map& in_map, IN cv::FileStorage& fs)
         {
             // 1. 处理 映射类型（MAP）：以字典形式写入，递归写入子节点
-            if (in_map._type == FileNodeTYPE::MAP)
+            if (in_map.type_ == FileNodeTYPE::MAP)
             {
                 // 开始写入字典 处理根节点，opencv提供的root.name有问题
-                if (in_map._node_name == "")
+                if (in_map.node_name_ == "")
                 {
-                    for (const auto& pair : in_map._map)
+                    for (const auto& pair : in_map.map_)
                     {
                         write_FileNode2Map_to_Yaml(pair, fs);
                     }
                 }else{
-                    fs << in_map._node_name << "{";
+                    fs << in_map.node_name_ << "{";
                     // 遍历子节点，递归写入
-                    for (const auto& pair : in_map._map)
+                    for (const auto& pair : in_map.map_)
                     {
                         write_FileNode2Map_to_Yaml(pair, fs);
                     }
@@ -209,21 +209,21 @@ namespace Jimn_Jhn{
             else
             {
                 // 根据数据类型写入对应值
-                if (in_map._type == FileNodeTYPE::INT)
+                if (in_map.type_ == FileNodeTYPE::INT)
                 {
-                    fs << in_map._node_name << in_map._idata;
+                    fs << in_map.node_name_ << in_map.idata_;
                 }
-                else if (in_map._type == FileNodeTYPE::FLOAT)
+                else if (in_map.type_ == FileNodeTYPE::FLOAT)
                 {
-                    fs << in_map._node_name << in_map._fdata;
+                    fs << in_map.node_name_ << in_map.fdata_;
                 }
-                else if (in_map._type == FileNodeTYPE::STR)
+                else if (in_map.type_ == FileNodeTYPE::STR)
                 {
-                    fs << in_map._node_name << std::string(in_map._sdata); // 转换为 std::string 写入
+                    fs << in_map.node_name_ << std::string(in_map.sdata_); // 转换为 std::string 写入
                 }
                 else
                 {
-                    fs << in_map._node_name << in_map._mat; // 直接写入 cv::Mat
+                    fs << in_map.node_name_ << in_map.mat_; // 直接写入 cv::Mat
                 }
             }
         }
@@ -251,11 +251,11 @@ namespace Jimn_Jhn{
                 return in_map;
             }
 
-            for (size_t i = 0; i < in_map._map.size(); i++)
+            for (size_t i = 0; i < in_map.map_.size(); i++)
             {
-                if (in_map._map[i]._node_name == keys[level])
+                if (in_map.map_[i].node_name_ == keys[level])
                 {
-                    return find_and_rewrite_kv(in_map._map[i], keys, ++level);   
+                    return find_and_rewrite_kv(in_map.map_[i], keys, ++level);   
                 }
             }
 

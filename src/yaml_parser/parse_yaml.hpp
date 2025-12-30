@@ -2,7 +2,7 @@
  * @Author: Jimn
  * @Date: 2025-12-23 20:12:52
  * @LastEditors: huangjiamin-1 2716673911@qq.com
- * @LastEditTime: 2025-12-26 09:56:49
+ * @LastEditTime: 2025-12-30 15:31:29
  * @FilePath: /Make-Code-Easier/files/C++解析Yaml文件/src/parse_yaml.hpp
  * @Description: 解析yaml文件
  */
@@ -25,13 +25,13 @@ namespace Jimn_Jhn{
         /// @brief cv::FileNode结构转为map结构的结构体
         struct FileNode2Map
         {
-            JString _node_name = "";
-            FileNodeTYPE _type;
-            float _fdata;
-            JString _sdata;
-            int _idata;
-            cv::Mat _mat;
-            std::vector<FileNode2Map> _map;
+            JString node_name_ = "";
+            FileNodeTYPE type_;
+            float fdata_;
+            JString sdata_;
+            int idata_;
+            cv::Mat mat_;
+            std::vector<FileNode2Map> map_;
         };
 
         /// @brief 判断是否是Opencv特有的结构，cv::Mat的结构是特殊的FileNode::Map
