@@ -10,6 +10,17 @@ you also need link the `xxx.lib/xxx.so` which you will use
 some parts(e.g. `src/yaml_parser/parse_yaml.hpp`) of libs need 3rd lib like `OpenCV`, you should write your own `CMakeLists.txt` and add them first.
 ```
 
+## `##` in Macro
+```markdown
+1. 令牌拼接运算符 `##`
+- 语法：`A##B` → 预处理器会把两个令牌（标识符）拼接为一个新的标识符；
+- 示例：`s_##name + name=log_dir → 生成 s_log_dir；FLAGS_##name → 生成 FLAGS_log_dir`；
+- 核心作用：为每个参数生成唯一的变量名，避免冲突。
+2. 字符串化运算符 `#`
+- 语法：`#A` → 预处理器会把标识符 A 直接转为字符串常量 `"A"`；
+- 示例：`#name + name=log_dir` → 生成 `"log_dir"`；
+- 核心作用：把参数名转为命令行可识别的字符串。
+```
 
 ## write in the last
 <!-- > 通过这个项目的编写，我学习了编译器的预处理和链接器的链接的功能。  
