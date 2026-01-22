@@ -1,3 +1,8 @@
+[toc]
+# 放在开头[规范说明]
+`C++`中所有的函数名、参数和成员变量都使用小驼峰风格
+`Python`中所有的函数名、参数和成员变量都使用下划线分隔的形式[蛇形风格]
+
 # make c++ easier about our projects
 ## why create this git?
 * **A:** **Dont** do the same things any more
